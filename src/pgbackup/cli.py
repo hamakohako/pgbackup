@@ -17,5 +17,3 @@ def create_parser():
             action=DriverAction,
             required=True)
     return parser
-
-
