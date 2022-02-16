@@ -31,7 +31,8 @@ def main():
         timestamp = time.strftime("%Y-%m-%dT%H:%M", time.localtime())
         file_name = pgdump.dump_filename(args.url, timestamp)
         print(f'Backing up datebase to {args.destination} in S3 as {file_name}')
-        storage.s3(client, dump.stdout, args.destination, 'filename.sql')
+        storage.s3(client, dump.stdout, args.destination, file_name)
     else:
         outfile = open(args.destination, 'wb')
+        print(f'Backing database up locally to {args.destination}')
         storage.local(dump.stdout, outfile)
